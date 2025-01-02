@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import SeleniumFramework.pages.LoginPage;
+import SeleniumFramework.pages.SignUpPage;
+
 @Test
 public class SignUpTest {
 	
@@ -15,21 +18,21 @@ public class SignUpTest {
 		driver.get("https://www.phptravels.net/");
 		Thread.sleep(3000);
 		
-		driver.findElement(By.xpath("//strong[contains(text(), 'Account')]")).click();
-		driver.findElement(By.xpath("//strong[contains(text(), 'Signup ')]")).click();
+		LoginPage login = new LoginPage(driver);
+		SignUpPage register = new SignUpPage(driver);
 		
-		driver.findElement(By.id("firstname")).sendKeys("Prabhat");
-		driver.findElement(By.id("last_name")).sendKeys("Singh");
-		driver.findElement(By.id("phone")).sendKeys("9087654321");
-		driver.findElement(By.id("user_email")).sendKeys("test@gmail.com");
-		driver.findElement(By.id("password")).sendKeys("password@12345");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@title='Select Country']")).click();
-		driver.findElement(By.xpath("//input[@type='search']")).sendKeys("India ");
-		driver.findElement(By.xpath("//span[contains(text(), 'India')]")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//*[@id='recaptcha-anchor']")).click();
-		driver.findElement(By.xpath("//button[@type='submit']")).click();
+		login.clickAccountDropdown();
+		register.clickSignUpButton();
+		register.enterFirstName();
+		register.enterLastName();
+		register.enterEmailId();
+		register.selectCountry();
+		register.enterContactNumber();
+		login.enterPassword();
+		register.clickCaptcha();
+		login.clickSubmitButton();
+		
+		
 	}
 	
 	
