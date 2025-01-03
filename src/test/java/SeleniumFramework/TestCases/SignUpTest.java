@@ -1,22 +1,23 @@
 package SeleniumFramework.TestCases;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import SeleniumFramework.TestComponents.BaseTest;
 import SeleniumFramework.pages.LoginPage;
 import SeleniumFramework.pages.SignUpPage;
 
 @Test
-public class SignUpTest {
+public class SignUpTest extends BaseTest{
+	WebDriver driver;
 	
-	public void signupSuccess() throws InterruptedException {
+	public void signupSuccess() throws InterruptedException, IOException {
 		
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("https://www.phptravels.net/");
-		Thread.sleep(3000);
+		driver = initializeDriver();
 		
 		LoginPage login = new LoginPage(driver);
 		SignUpPage register = new SignUpPage(driver);
